@@ -1,0 +1,11 @@
+📁 obsidian_ai_sandbox (独立 Vault)
+│
+├── 📁 source/         # 存放你需要让 AI 处理的原文副本（从主库复制过来）
+├── 📁 inbox/          # 存放你的指令记录或批量任务列表
+├── 📁 ai_draft/       # 沙盒区：AI 插件或 Python 脚本输出的改稿
+├── 📁 approved/       # 审批通过后，移入此文件夹
+├── 📁 archive/        # 驳回的废稿
+│
+├── 📁 logs/              # Python 代理记录的 Token 消耗日志
+│   └── 📄 token_usage.jsonl
+
