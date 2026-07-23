@@ -1,3 +1,35 @@
-@use "./variables.scss" as *;
+﻿/* ===== 安全的自定义页眉/页脚（纯 CSS，不影响功能） ===== */
 
-// put your custom CSS here!
+/* 页眉：在页面最上方添加一个带图片的横幅 */
+body::before {
+  content: "📚 我的知识库";  /* 这里改成你的标题文字 */
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 60px 20px 30px;
+  color: #2d7d9a;
+  background: #f8f9fa url('/static/header-bg.jpg') no-repeat center center;  /* 预留图片位置 */
+  background-size: cover;
+  border-bottom: 3px solid #e5e5e5;
+  margin-bottom: 20px;
+}
+
+/* 页脚：在页面最下方添加信息 */
+body::after {
+  content: "© 2026 我的网站 | 保留所有权利";  /* 改成你的版权信息 */
+  display: block;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 40px;
+  border-top: 1px solid #e5e5e5;
+  font-size: 0.9rem;
+  color: #666;
+  background: #f8f9fa url('/static/footer-bg.jpg') no-repeat center bottom;  /* 预留图片位置 */
+  background-size: cover;
+}
+
+/* 优化内边距，让内容不贴边 */
+.page {
+  padding: 0 20px 20px;
+}
