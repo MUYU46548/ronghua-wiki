@@ -2,20 +2,43 @@
 
 /* 页眉：在页面最上方添加一个带图片的横幅 */
 body::before {
-  content: "ROSA 绒花计划官方Wiki";  /* 这里改成你的标题文字 */
+  content: "ROSA★绒花计划官方Wiki"; /* 这里改成你的标题文字 */
   display: block;
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
   padding: 60px 20px 30px;
   color: #2d7d9a;
-  background: #f8f9fa url('/static/header-bg.jpg') no-repeat center center;  /* 预留图片位置 */
+  background: #f8f9fa url("/static/header-bg.jpg") no-repeat center center; /* 预留图片位置 */
   background-size: cover;
   border-bottom: 3px solid #e5e5e5;
   margin-bottom: 20px;
 }
 
+/* 暗色模式：页眉背景和文字颜色覆盖 */
+:root[saved-theme="dark"] body::before {
+  background: #1e1e2e url("/static/header-bg.jpg") no-repeat center center;
+  color: #e0e0e0;
+  border-bottom: 3px solid #3a3a3e;
+}
+
 /* 优化内边距，让内容不贴边 */
 .page {
   padding: 0 20px 20px;
+}
+
+/* 表格边框：让边框更明显 */
+table {
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid var(--gray) !important;
+}
+
+th,
+td {
+  padding: 8px 12px;
 }

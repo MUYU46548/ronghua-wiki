@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 sourceDir: E:/图书馆/ROSA
 configuration:
-  pageTitle: Quartz 5
+  pageTitle: ROSA
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
@@ -47,33 +47,32 @@ configuration:
     - 08 外部资源导航
     - 05 同人作品
   theme:
-    fontOrigin: googleFonts
-    cdnCaching: true
+    fontOrigin: local
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
-      code: IBM Plex Mono
+      header: '"Segoe UI", "Helvetica Neue", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif'
+      body: '"Segoe UI", "Helvetica Neue", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif'
+      code: '"Cascadia Code", "JetBrains Mono", "Fira Code", "Source Code Pro", "Noto Sans Mono CJK SC", Consolas, "Courier New", monospace'
     colors:
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#fff23688"
+        light: "#fafafa"
+        lightgray: "#e8e8e8"
+        gray: "#d0d0d0"
+        darkgray: "#3a3a3a"
+        dark: "#1a1a1a"
+        secondary: "#1a4480"
+        tertiary: "#5a7ba8"
+        highlight: "rgba(26, 68, 128, 0.08)"
+        textHighlight: "rgba(255, 213, 79, 0.4)"
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light: "#1a1a1c"
+        lightgray: "#2a2a2e"
+        gray: "#3a3a3e"
+        darkgray: "#d4d4d8"
+        dark: "#f0f0f0"
+        secondary: "#6ba0d8"
+        tertiary: "#8ab4d8"
+        highlight: "rgba(107, 160, 216, 0.12)"
+        textHighlight: "rgba(255, 213, 79, 0.25)"
 plugins:
   - source: github:quartz-community/created-modified-date
     enabled: true
@@ -134,6 +133,12 @@ plugins:
     order: 92
   - source: github:quartz-community/fonts
     enabled: true
+    options:
+      fontOrigin: local
+      useThemeFonts: false
+      body: '"Segoe UI", "Helvetica Neue", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif'
+      header: '"Segoe UI", "Helvetica Neue", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif'
+      code: '"Cascadia Code", "JetBrains Mono", "Fira Code", Consolas, monospace'
   - source: github:quartz-community/remove-draft
     enabled: true
   - source: github:quartz-community/explicit-publish
@@ -148,7 +153,7 @@ plugins:
   - source: github:quartz-community/favicon
     enabled: true
   - source: github:quartz-community/og-image
-    enabled: true
+    enabled: false
   - source: github:quartz-community/cname
     enabled: true
   - source: github:quartz-community/canvas-page
@@ -233,6 +238,9 @@ plugins:
     options:
       links:
         "CC BY-NC-SA 4.0": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+        "免责声明": "/02-帮助/免责声明"
+        "联系我们": "/02-帮助/联系我们"
+        "关于本站": "/02-帮助/关于"
   - source: github:quartz-community/recent-notes
     enabled: false
   - source: github:quartz-community/spacer
