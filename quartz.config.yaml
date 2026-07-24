@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
-sourceDir: "E:/图书馆/ROSA"
+sourceDir: E:/图书馆/ROSA
 configuration:
   pageTitle: Quartz 5
   pageTitleSuffix: ""
@@ -14,32 +14,32 @@ configuration:
     - templates
     - .obsidian
     - .git
-    - .trash # Obsidian回收站
-    - "**/.DS_Store" # macOS 系统文件，加上以防万一
-    - "**/desktop.ini" # Windows 系统文件
+    - .trash
+    - "**/.DS_Store"
+    - "**/desktop.ini"
     - "**/Thumbs.db"
-    - ".workspace.json" # Obsidian 工作区文件
+    - .workspace.json
     - "**/.workspace.json"
-    - ".obsidian/workspace.json"
+    - .obsidian/workspace.json
     - "**/.obsidian/workspace.json"
-    - ".obsidian/plugins/**/*.js" # 插件脚本
-    - ".obsidian/plugins/**/*.json" # 插件配置
+    - .obsidian/plugins/**/*.js
+    - .obsidian/plugins/**/*.json
     - "**/.trash/**"
-    - "**/.git" # 双重保险，屏蔽 .git 本身
-    - "**/.gitignore" # 顺便把 .gitignore 也屏蔽掉
+    - "**/.git"
+    - "**/.gitignore"
     - .agent_context
-    - "AGENTS.md" # 忽略根目录下的 AGENTS.md
-    - "**/AGENTS.md" # 忽略任意层级的 AGENTS.md 文件
-    - "AGENTS.agent-context-indexer.md" # Agent索引插件文件
+    - AGENTS.md
+    - "**/AGENTS.md"
+    - AGENTS.agent-context-indexer.md
     - "**/AGENTS.agent-context-indexer.md"
-    - "main.js" # 忽略根目录下的 main.js 文件
-    - "manifest.json" # 忽略根目录下的 manifest.json 文件
-    - "styles.css" # 忽略 content 根目录下的 styles.css
-    - "**/styles.css" # 忽略任意子文件夹里的 styles.css
-    - Obsidian_AI_Sandbox # AI工作沙箱
-    - 指令集 # 指令集文件夹
+    - main.js
+    - manifest.json
+    - styles.css
+    - "**/styles.css"
+    - Obsidian_AI_Sandbox
+    - 指令集
     - 00 主面板
-    - 99 模板 # 模板文件夹
+    - 99 模板
     - 98 附件
     - 97 旧资料存档
     - 96 事务管理
@@ -232,8 +232,7 @@ plugins:
     enabled: true
     options:
       links:
-        GitHub: https://github.com/jackyzha0/quartz
-        Discord Community: https://discord.gg/cRFFHYye7t
+        "CC BY-NC-SA 4.0": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
   - source: github:quartz-community/recent-notes
     enabled: false
   - source: github:quartz-community/spacer

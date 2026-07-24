@@ -1,7 +1,6 @@
 .DS_Store
 .gitignore
 node_modules
-public
 prof
 tsconfig.tsbuildinfo
 .obsidian
@@ -11,3 +10,6 @@ private/
 replit.nix
 .quartz/
 quartz/cli/tui/dist/
+
+# 忽略软链接
+content/
