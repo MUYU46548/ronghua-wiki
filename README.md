@@ -1,8 +1,10 @@
 # ROSA 系统 (Ronghua Wiki)
 
-本仓库是 [ROSA 系统](https://MUYU46548.github.io/ronghua-wiki/) 的源代码与内容仓库。ROSA 系统是“绒花计划”的官方设定资料百科，致力于收集和整理关于绒花世界的一切信息。
+本仓库是 [ROSA 系统](https://MUYU46548.github.io/ronghua-wiki/) 的源代码与内容仓库。ROSA 系统是“绒花计划”的官方设定资料百科，致力于收集和整理关于绒花计划世界观的一切信息。
 
 本网站基于 **Quartz 5.0** 构建，一个将 Markdown 笔记转换为静态网站的工具。
+
+感谢原作者 jackyzha0 的杰出工作。
 
 ## 🚀 本地预览
 
@@ -25,10 +27,8 @@ npx quartz build --serve
 - public/: npx quartz build 命令生成的静态网站文件（构建后可在本地预览）。
 - quartz.config.yaml: Quartz 的主要配置文件，不建议修改。
 
-## ⚖️ 许可证
+## 致谢与许可说明
 
-本仓库中的原创内容（即 content/ 目录下除框架文件外的所有文本、图片等）采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议 `(CC BY-NC-SA 4.0)` 进行许可。
-
-构建本网站所使用的 Quartz 框架 则遵循其自身的 MIT 许可证。
-
-更多详情，请参阅本仓库的 `LICENSE` 文件及网站内的 `免责声明` 。
+- 本项目基于 [Quartz](https://github.com/jackyzha0/quartz) 构建，Quartz 以 MIT 许可证发布，其版权归属见仓库 `LICENSE.txt`。  
+- 本仓库中 `content/` 目录下的原创内容（文本、图片等）采用 CC BY-NC-SA 4.0 许可。  
+- 有关 Quartz 本身的许可与使用限制，请以 Quartz 官方仓库为准。
