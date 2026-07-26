@@ -13,3 +13,7 @@ quartz/cli/tui/dist/
 
 # 忽略软链接
 content/
+
+# 本地日志文件（防止泄露路径/思考过程）
+*日志.md
+*log.md
