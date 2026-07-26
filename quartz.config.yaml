@@ -1,13 +1,13 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 sourceDir: E:/图书馆/ROSA
 configuration:
-  pageTitle: ROSA
-  pageTitleSuffix: ""
+  pageTitle: "ROSA 绒花计划Wiki"
+  pageTitleSuffix: " | 绒花计划官方Wiki"
   enableSPA: true
   enablePopovers: true
   analytics:
     provider: plausible
-  locale: en-US
+  locale: zh-CN
   baseUrl: quartz.jzhao.xyz
   ignorePatterns:
     - private
@@ -46,6 +46,7 @@ configuration:
     - 07 资料收藏
     - 08 外部资源导航
     - 05 同人作品
+    - 03 设定/99 杂项
   theme:
     fontOrigin: local
     typography:
@@ -169,6 +170,11 @@ plugins:
     layout:
       position: left
       priority: 50
+    options:  # 导航栏标题自定义
+      title: "导航"
+      folderClickBehavior: link
+      folderDefaultState: collapsed
+      useSavedState: true
   - source: github:quartz-community/graph
     enabled: true
     layout:
@@ -234,13 +240,14 @@ plugins:
       position: afterBody
       priority: 10
   - source: github:quartz-community/footer
-    enabled: true
+    enabled: false
     options:
       links:
         "CC BY-NC-SA 4.0": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
         "免责声明": "/02-帮助/免责声明"
         "联系我们": "/02-帮助/联系我们"
         "关于本站": "/02-帮助/关于"
+        "常见问答": "/02-帮助/常见问答"
   - source: github:quartz-community/recent-notes
     enabled: false
   - source: github:quartz-community/spacer

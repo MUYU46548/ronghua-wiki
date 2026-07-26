@@ -674,17 +674,32 @@ export async function loadQuartzLayout(layoutOverrides?: {
     }
   }
 
-  // Add Head (built-in) and Footer (plugin)
+  // Add Head (built-in) and Footer (local component, fallback to plugin)
   const HeadModule = await import("../../components/Head")
   const head = HeadModule.default()
 
-  // Find footer from component registry (loaded during plugin instantiation)
+  // 优先使用本地 Footer 组件，fallback 到插件版本
+  let footer: QuartzComponent | undefined
+
+  // 尝试加载本地 Footer 组件
+  let LocalFooter: QuartzComponentConstructor | undefined
+  try {
+    const FooterModule = await import("../../components/Footer")
+    LocalFooter = FooterModule.default
+  } catch {
+    // 本地无自定义 Footer
+  }
+
+  // 获取 footer 插件配置（用于本地组件或插件回退）
   const footerEntry = json.plugins.find(
     (e) => e.enabled && extractPluginName(e.source) === "footer",
   )
-  let footer: QuartzComponent | undefined
-  if (footerEntry) {
-    // Try registry lookup: plugin name ("footer") or export name ("Footer")
+
+  if (LocalFooter) {
+    // 使用本地组件（内部已包含默认 links）
+    footer = LocalFooter(undefined)
+  } else if (footerEntry) {
+    // 回退到插件 registry
     const footerReg = componentRegistry.get("footer") ?? componentRegistry.get("Footer")
     if (footerReg) {
       if (typeof footerReg.component === "function" && !("displayName" in footerReg.component)) {

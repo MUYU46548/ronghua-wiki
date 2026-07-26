@@ -1,5 +1,6 @@
 import NotFound from "./pages/404"
 import Head from "./Head"
+import Footer from "./Footer"
 import Spacer from "./Spacer"
 import DesktopOnly from "./DesktopOnly"
 import MobileOnly from "./MobileOnly"
@@ -11,4 +12,4 @@ export { External } from "./external"
 export type { ComponentManifest, RegisteredComponent } from "./registry"
 export type { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
-export { Head, Spacer, DesktopOnly, MobileOnly, NotFound, Flex, ConditionalRender }
+export { Head, Footer, Spacer, DesktopOnly, MobileOnly, NotFound, Flex, ConditionalRender }
