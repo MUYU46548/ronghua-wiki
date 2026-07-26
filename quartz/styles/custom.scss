@@ -7,19 +7,54 @@ body::before {
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
-  padding: 60px 20px 30px;
+  padding: 8px 20px;
   color: #2d7d9a;
-  background: #f8f9fa url("/static/header-bg.jpg") no-repeat center center; /* 预留图片位置 */
+  background: #f8f9fa; /* 保留纯色背景 */
   background-size: cover;
   border-bottom: 3px solid #e5e5e5;
-  margin-bottom: 20px;
+  margin-bottom: -70px;  /* 经过精确微调，与 Quartz 默认布局保留适度呼吸感 */
 }
 
 /* 暗色模式：页眉背景和文字颜色覆盖 */
 :root[saved-theme="dark"] body::before {
-  background: #1e1e2e url("/static/header-bg.jpg") no-repeat center center;
+  background: #1e1e2e;
   color: #e0e0e0;
   border-bottom: 3px solid #3a3a3e;
+}
+
+/* ===== Logo 图标（THB Wiki 风格：大 Logo 居中） ===== */
+
+.page-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  margin: 0;
+}
+
+.page-title a {
+  font-size: 0; /* 隐藏文字，但对屏幕阅读器/SEO 友好 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+}
+
+.page-title a::before {
+  content: "";
+  display: block;
+  width: 80%;
+  max-width: 160px;
+  aspect-ratio: 1; /* 保持 SVG 正方形比例 */
+  background-image: url("/static/logo.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+:root[saved-theme="dark"] .page-title a::before {
+  background-image: url("/static/logo-white.svg");
 }
 
 /* 优化内边距，让内容不贴边 */
@@ -41,4 +76,73 @@ td {
 th,
 td {
   padding: 8px 12px;
+}
+
+/* ===== 移动端顶部栏修复（仅 Logo，无文字） ===== */
+/* 仅在移动端生效（屏幕宽度 ≤ 800px），完全隔离桌面端 */
+
+@media (max-width: 800px) {
+  /* 1. 重置顶部栏内边距 */
+  .page-title {
+    padding: 0 10px !important;
+    margin: 0 !important;
+    min-height: unset !important;
+  }
+
+  /* 2. 保持文字隐藏 + 小图标 */
+  .page-title a {
+    font-size: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 0 !important;
+  }
+
+  /* 3. 小号方形 Logo（固定宽高） */
+  .page-title a::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 28px !important;
+    height: 28px !important;
+    max-width: unset !important;
+    background-image: url('/static/logo.svg') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* 4. 暗色模式切换纯白版 */
+  :root[saved-theme="dark"] .page-title a::before {
+    background-image: url('/static/logo-white.svg') !important;
+  }
+}
+
+/* ===== 回到顶部按钮 ===== */
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#back-to-top:hover {
+  opacity: 0.85;
 }
