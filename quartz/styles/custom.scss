@@ -1,25 +1,65 @@
 ﻿/* ===== 安全的自定义页眉/页脚（纯 CSS，不影响功能） ===== */
 
-/* 页眉：在页面最上方添加一个带图片的横幅 */
-body::before {
-  content: "ROSA★绒花计划官方Wiki"; /* 这里改成你的标题文字 */
-  display: block;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  padding: 8px 20px;
-  color: #2d7d9a;
-  background: #f8f9fa; /* 保留纯色背景 */
-  background-size: cover;
+/* ===== 顶部固定横幅 ===== */
+#quartz-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 56px;
+  padding: 0 1rem;
+  background: #f8f9fa;
   border-bottom: 3px solid #e5e5e5;
-  margin-bottom: -70px;  /* 经过精确微调，与 Quartz 默认布局保留适度呼吸感 */
+  box-sizing: border-box;
 }
 
-/* 暗色模式：页眉背景和文字颜色覆盖 */
-:root[saved-theme="dark"] body::before {
+/* 移动端：隐藏横幅，保留原有 Logo 布局 */
+@media (max-width: 800px) {
+  #quartz-banner {
+    display: none;
+  }
+
+  body {
+    padding-top: 0;
+  }
+}
+
+.banner-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: start;
+}
+
+.banner-center {
+  justify-self: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d7d9a;
+  white-space: nowrap;
+}
+
+.banner-right {
+  justify-self: end;
+}
+
+/* 防止固定横幅遮挡页面内容 */
+body {
+  padding-top: 56px;
+}
+
+/* 暗色模式：横幅样式覆盖 */
+:root[saved-theme="dark"] #quartz-banner {
   background: #1e1e2e;
-  color: #e0e0e0;
   border-bottom: 3px solid #3a3a3e;
+}
+
+:root[saved-theme="dark"] .banner-center {
+  color: #e0e0e0;
 }
 
 /* ===== Logo 图标（THB Wiki 风格：大 Logo 居中） ===== */
@@ -100,12 +140,12 @@ td {
 
   /* 3. 小号方形 Logo（固定宽高） */
   .page-title a::before {
-    content: '' !important;
+    content: "" !important;
     display: inline-block !important;
     width: 28px !important;
     height: 28px !important;
     max-width: unset !important;
-    background-image: url('/static/logo.svg') !important;
+    background-image: url("/static/logo.svg") !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -114,8 +154,35 @@ td {
 
   /* 4. 暗色模式切换纯白版 */
   :root[saved-theme="dark"] .page-title a::before {
-    background-image: url('/static/logo-white.svg') !important;
+    background-image: url("/static/logo-white.svg") !important;
   }
+}
+
+/* ===== 横幅按钮 ===== */
+.banner-btn {
+  background: transparent;
+  border: 1px solid #e5e5e5;
+  color: #2d7d9a;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.banner-btn:hover {
+  background: rgba(45, 125, 154, 0.1);
+}
+
+:root[saved-theme="dark"] .banner-btn {
+  border-color: #3a3a3e;
+  color: #e0e0e0;
+}
+
+:root[saved-theme="dark"] .banner-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* ===== 回到顶部按钮 ===== */
@@ -145,4 +212,83 @@ td {
 
 #back-to-top:hover {
   opacity: 0.85;
+}
+
+/* ===== 横幅标题返回首页 ===== */
+/* 鼠标悬停时底部有一条淡线 */
+.banner-title-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  display: inline-block; /* 确保下划线空间充足 */
+  padding-bottom: 4px; /* 增加一点呼吸空间 */
+}
+
+.banner-title-link:hover {
+  /* 关键修改：currentColor 会自动匹配你当前标题文字的颜色 */
+  border-bottom: 3px solid currentColor;
+}
+
+/* ===== 分享按钮 ===== */
+#share-btn {
+  position: fixed;
+  bottom: 6rem;
+  right: 2rem;
+  z-index: 999;
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#share-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#share-btn:hover {
+  opacity: 0.85;
+}
+
+/* ===== Toast 提示 ===== */
+.toast-notification {
+  position: fixed;
+  bottom: 10rem;
+  right: 2rem;
+  z-index: 1000;
+  background: var(--secondary);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  pointer-events: none;
+  max-width: 280px;
+  text-align: center;
+}
+
+.toast-notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 暗色模式：Toast 适配 */
+:root[saved-theme="dark"] .toast-notification {
+  background: #6ba0d8;
+  color: #1a1a1c;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }

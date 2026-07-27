@@ -1,8 +1,8 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 sourceDir: E:/图书馆/ROSA
 configuration:
-  pageTitle: "ROSA 绒花计划Wiki"
-  pageTitleSuffix: " | 绒花计划官方Wiki"
+  pageTitle: "ROSA★绒花计划Wiki"
+  pageTitleSuffix: " | 绒花计划Wiki"
   enableSPA: true
   enablePopovers: true
   analytics:
