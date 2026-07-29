@@ -29,6 +29,6 @@ npx quartz build --serve
 
 ## 致谢与许可说明
 
-- 本项目基于 [Quartz](https://github.com/jackyzha0/quartz) 构建，Quartz 以 MIT 许可证发布，其版权归属见仓库 `LICENSE.txt`。  
-- 本仓库中 `content/` 目录下的原创内容（文本、图片等）采用 CC BY-NC-SA 4.0 许可。  
+- 本项目基于 [Quartz](https://github.com/jackyzha0/quartz) 构建，Quartz 以 MIT 许可证发布，其版权归属见仓库 `LICENSE.txt`。
+- 本仓库中 `content/` 目录下的原创内容（文本、图片等）采用 CC BY-NC-SA 4.0 许可。
 - 有关 Quartz 本身的许可与使用限制，请以 Quartz 官方仓库为准。

@@ -20,3 +20,6 @@ public/
 # 本地日志文件（防止泄露路径/思考过程）
 *日志.md
 *log.md
+
+# hermes相关
+IDEA.md

@@ -1,6 +1,7 @@
 import { readFileSync } from "fs"
 import { join } from "path"
 import type { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { joinSegments, pathToRoot } from "../util/path"
 
 function getQuartzVersion(): string {
   try {
@@ -17,18 +18,19 @@ export interface FooterOptions {
 
 const defaultLinks: Record<string, string> = {
   "CC BY-NC-SA 4.0": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
-  免责声明: "/02-帮助/免责声明",
-  联系我们: "/02-帮助/联系我们",
-  关于本站: "/02-帮助/关于",
-  常见问答: "/02-帮助/常见问答",
+  免责声明: "02-帮助/免责声明",
+  联系我们: "02-帮助/联系我们",
+  关于本站: "02-帮助/关于",
+  常见问答: "02-帮助/常见问答",
 }
 
 export default ((opts?: FooterOptions) => {
   const version = getQuartzVersion()
 
-  const Footer: QuartzComponent = ({ displayClass }: QuartzComponentProps) => {
+  const Footer: QuartzComponent = ({ displayClass, fileData }: QuartzComponentProps) => {
     const year = new Date().getFullYear()
     const links = opts?.links ?? defaultLinks
+    const baseDir = fileData?.slug ? pathToRoot(fileData.slug) : "./"
 
     return (
       <footer
@@ -55,7 +57,10 @@ export default ((opts?: FooterOptions) => {
           <ul style="list-style:none;margin:0;padding:0;display:flex;gap:1rem;flex-wrap:wrap">
             {Object.entries(links).map(([text, link]) => (
               <li key={text}>
-                <a href={link} style="color:var(--secondary);text-decoration:none">
+                <a
+                  href={link.startsWith("http") ? link : joinSegments(baseDir, link)}
+                  style="color:var(--secondary);text-decoration:none"
+                >
                   {text}
                 </a>
               </li>

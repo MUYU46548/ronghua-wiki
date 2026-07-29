@@ -8,7 +8,7 @@ configuration:
   analytics:
     provider: plausible
   locale: zh-CN
-  baseUrl: quartz.jzhao.xyz
+  baseUrl: rosawiki.com
   ignorePatterns:
     - private
     - templates
@@ -170,7 +170,7 @@ plugins:
     layout:
       position: left
       priority: 50
-    options:  # 导航栏标题自定义
+    options: # 导航栏标题自定义
       title: "导航"
       folderClickBehavior: link
       folderDefaultState: collapsed

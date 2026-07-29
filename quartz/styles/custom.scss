@@ -87,14 +87,14 @@ body {
   width: 80%;
   max-width: 160px;
   aspect-ratio: 1; /* 保持 SVG 正方形比例 */
-  background-image: url("/static/logo.svg");
+  background-image: url("./static/logo.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 :root[saved-theme="dark"] .page-title a::before {
-  background-image: url("/static/logo-white.svg");
+  background-image: url("./static/logo-white.svg");
 }
 
 /* 优化内边距，让内容不贴边 */
@@ -145,7 +145,7 @@ td {
     width: 28px !important;
     height: 28px !important;
     max-width: unset !important;
-    background-image: url("/static/logo.svg") !important;
+    background-image: url("./static/logo.svg") !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -154,7 +154,7 @@ td {
 
   /* 4. 暗色模式切换纯白版 */
   :root[saved-theme="dark"] .page-title a::before {
-    background-image: url("/static/logo-white.svg") !important;
+    background-image: url("./static/logo-white.svg") !important;
   }
 }
 
