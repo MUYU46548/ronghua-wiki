@@ -8,7 +8,8 @@ configuration:
   analytics:
     provider: plausible
   locale: zh-CN
-  baseUrl: rosawiki.com
+  baseUrl: www.rosawiki.com
+  outputPath: public
   ignorePatterns:
     - private
     - templates
