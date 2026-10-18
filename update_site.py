@@ -17,6 +17,7 @@ Quartz 自动构建与发布工具
 import subprocess
 import sys
 import os
+import re
 import argparse
 import shutil
 import datetime
@@ -102,6 +103,39 @@ def clear_directory_keep_git(directory):
             shutil.rmtree(item_path)
         else:
             os.unlink(item_path)
+
+
+def check_cname(project_root):
+    """
+    CNAME 一致性断言（立项契约 REV1 / ⑥-1）。
+    public/CNAME 必须等于 quartz.config.yaml 的 baseUrl 主机名，否则中止推送。
+    背景：ROSA 库根 7/26 遗留裸域 CNAME 曾两次覆盖插件产物，导致 Pages 域名验证
+    失败 + Cloudflare 301 循环（9/2 d8fdd6ea、10/18 见契约⑤）。
+    """
+    config_file = os.path.join(project_root, "quartz.config.yaml")
+    base_url = None
+    with open(config_file, encoding="utf-8") as f:
+        for line in f:
+            m = re.match(r"\s*baseUrl:\s*(\S+)", line)
+            if m:
+                base_url = m.group(1).strip("\"'")
+                break
+    if not base_url:
+        print("⚠️ 未在 quartz.config.yaml 找到 baseUrl，无法校验 CNAME")
+        return False
+    expected = base_url.split("//")[-1].split("/")[0]
+    cname_file = os.path.join(project_root, "public", "CNAME")
+    if not os.path.exists(cname_file):
+        print(f"❌ CNAME 断言失败：{cname_file} 不存在（cname 插件未生成？）")
+        return False
+    with open(cname_file, encoding="utf-8") as f:
+        actual = f.read().strip()
+    if actual != expected:
+        print(f"❌ CNAME 断言失败：public/CNAME = {actual!r}，期望 {expected!r}")
+        print("   推送已中止（防止线上 301 循环）。处置见 立项契约.md REV1。")
+        return False
+    print(f"✅ CNAME 断言通过：public/CNAME = {actual}")
+    return True
 
 
 def git_push_deploy(project_root):
@@ -211,6 +245,10 @@ def main():
 
     # 推送（可选）
     if args.push:
+        # REV1: 推送前断言 CNAME 与 config baseUrl 一致，防止裸域产物上线
+        if not check_cname(project_root):
+            print("\n❌ 已中止，未推送。修复后重跑 python update_site.py --push")
+            sys.exit(1)
         git_push_deploy(project_root)
 
     # 预览（可选）

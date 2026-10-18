@@ -48,6 +48,9 @@ configuration:
     - 08 外部资源导航
     - 05 同人作品
     - 03 设定/99 杂项
+    # REV1(2026-10-18): ROSA 库根 7/26 遗留裸域 CNAME 退出构建拷贝（文件本身保留不动）；
+    # 产物 CNAME 一律由 cname 插件按下方 baseUrl 生成，防止再次覆盖为裸域导致 Pages 301 循环。
+    - CNAME
   theme:
     fontOrigin: local
     typography:
